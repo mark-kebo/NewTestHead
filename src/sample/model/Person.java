@@ -1,6 +1,5 @@
 package sample.model;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -13,13 +12,13 @@ import javafx.beans.property.StringProperty;
 public class Person {
     private final StringProperty personName;
     private final StringProperty personCorrect;
-    private final IntegerProperty personPercent;
+    private final StringProperty personPercent;
 
     /**
      * Default constructor.
      */
     public Person() {
-        this(null);
+        this(null, null, null);
     }
 
     public String getPersonName() {
@@ -46,15 +45,15 @@ public class Person {
         this.personCorrect.set(personCorrect);
     }
 
-    public int getPersonPercent() {
+    public String getPersonPercent() {
         return personPercent.get();
     }
 
-    public IntegerProperty personPercentProperty() {
+    public StringProperty personPercentProperty() {
         return personPercent;
     }
 
-    public void setPersonPercent(int personPercent) {
+    public void setPersonPercent(String personPercent) {
         this.personPercent.set(personPercent);
     }
 
@@ -62,10 +61,12 @@ public class Person {
      * Constructor with some initial data.
      *
      * @param personName
+     * @param personCorrect
+     * @param personPercent
      */
-    public Person(String personName) {
+    public Person(String personName, String personCorrect, String personPercent) {
         this.personName = new SimpleStringProperty(personName);
-        personCorrect = new SimpleStringProperty("");
-        personPercent = new SimpleIntegerProperty(0);
+        this.personCorrect = new SimpleStringProperty(personCorrect);
+        this.personPercent = new SimpleStringProperty(personPercent);
     }
 }

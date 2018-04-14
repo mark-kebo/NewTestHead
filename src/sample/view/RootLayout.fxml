@@ -5,18 +5,28 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.RootLayoutController">
+<BorderPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.RootLayoutController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="Файл">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleNew" text="Новый" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleOpen" text="Открыть" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Сохранить" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleSaveAs" text="Сохранить как" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="О приложении" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Выход" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleNew" text="Новый"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleOpen" text="Открыть"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Сохранить"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleSaveAs" text="Сохранить как"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Результаты">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleResult" text="Результаты тестирования"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Дополнительно">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="О приложении"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Выход"/>
                     </items>
                 </Menu>
             </menus>

@@ -121,7 +121,7 @@ public class QuestionOverviewController {
     @FXML
     private void handleNewQuestion() {
         Question tempQuestion = new Question();
-        boolean okClicked = mainApp.showPersonEditDialog(tempQuestion);
+        boolean okClicked = mainApp.showQuestionEditDialog(tempQuestion);
         if (okClicked) {
             mainApp.getQuestionData().add(tempQuestion);
         }
@@ -135,7 +135,7 @@ public class QuestionOverviewController {
     private void handleEditQuestion() {
         Question selectedQuestion = questionTable.getSelectionModel().getSelectedItem();
         if (selectedQuestion != null) {
-            boolean okClicked = mainApp.showPersonEditDialog(selectedQuestion);
+            boolean okClicked = mainApp.showQuestionEditDialog(selectedQuestion);
             if (okClicked) {
                 showQuestionDetails(selectedQuestion);
             }

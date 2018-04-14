@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.view.RootLayoutController;
+import sample.view.VerificationResultController;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -40,7 +41,7 @@ public class MainApp extends Application {
 
         initRootLayout();
 
-        showPersonOverview();
+        showQuestionOverview();
     }
 
     /**
@@ -78,7 +79,7 @@ public class MainApp extends Application {
     /**
      * Shows inside the root layout.
      */
-    public void showPersonOverview() {
+    public void showQuestionOverview() {
         try {
             // Load.
             FXMLLoader loader = new FXMLLoader();
@@ -105,7 +106,7 @@ public class MainApp extends Application {
      * @param question the question object to be edited
      * @return true if the user clicked OK, false otherwise.
      */
-    public boolean showPersonEditDialog(Question question) {
+    public boolean showQuestionEditDialog(Question question) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -136,6 +137,41 @@ public class MainApp extends Application {
     }
 
     /**
+     * Opens a dialog to edit details for the specified question. If the user
+     * clicks OK, the changes are saved into the provided question object and true
+     * is returned.
+     *
+     * @return true if the user clicked OK, false otherwise.
+     */
+    public void showPersonDialog() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/VerificationResult.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Результаты тестирования");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set into the controller.
+            VerificationResultController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPerson();
+            controller.initVRCLayout();
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Returns the main stage.
      *
      * @return
@@ -145,7 +181,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns the data as an observable list of Persons.
+     * Returns the data as an observable list.
      *
      * @return
      */

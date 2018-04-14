@@ -19,6 +19,7 @@ public class RootLayoutController {
 
     // Ссылка на главное приложение
     private MainApp mainApp;
+    VerificationResultController verificationResult;
 
     /**
      * Вызывается главным приложением, чтобы оставить ссылку на самого себя.
@@ -117,5 +118,13 @@ public class RootLayoutController {
     @FXML
     private void handleExit() {
         System.exit(0);
+    }
+
+    /**
+     * Окно для просмотре результатов.
+     */
+    @FXML
+    private void handleResult() {
+        mainApp.showPersonDialog();
     }
 }

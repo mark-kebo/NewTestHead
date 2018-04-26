@@ -1,5 +1,6 @@
 package sample.view;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import sample.model.Person;
 import sample.model.PersonListWrapper;
 
@@ -19,6 +26,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.prefs.Preferences;
 
 public class VerificationResultController {
@@ -120,20 +130,53 @@ public class VerificationResultController {
      * Print.
      */
     @FXML
-    private void handlePrint() {
-        print(personTable);
-    }
+    private void handlePrint(){
+        FileChooser fileChooser = new FileChooser();
 
-    private void print(final Node node) {
-        Printer printer = Printer.getDefaultPrinter();
+        // Задаём фильтр расширений
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "EXCEL files (*.xls)", "*.xls");
+        fileChooser.getExtensionFilters().add(extFilter);
 
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null) {
-            boolean success = job.printPage(node);
-            if (success) {
-                System.out.println("PRINT");
-                job.endJob();
+        // Показываем диалог сохранения файла
+        File file = fileChooser.showSaveDialog(dialogStage);
+
+        if (file != null) {
+            // Make sure it has the correct extension
+            if (!file.getPath().endsWith(".xls")) {
+                file = new File(file.getPath() + ".xls");
             }
+        }
+
+        Workbook workbook = new HSSFWorkbook();
+        Sheet spreadsheet = workbook.createSheet("sample");
+
+        Row row = spreadsheet.createRow(0);
+
+        for (int j = 0; j < personTable.getColumns().size(); j++) {
+            row.createCell(j).setCellValue(personTable.getColumns().get(j).getText());
+        }
+
+        for (int i = 0; i < personTable.getItems().size(); i++) {
+            row = spreadsheet.createRow(i + 1);
+            for (int j = 0; j < personTable.getColumns().size(); j++) {
+                if(personTable.getColumns().get(j).getCellData(i) != null) {
+                    row.createCell(j).setCellValue(personTable.getColumns().get(j).getCellData(i).toString());
+                }
+                else {
+                    row.createCell(j).setCellValue("");
+                }
+            }
+        }
+
+        FileOutputStream fileOut = null;
+        try {
+            assert file != null;
+            fileOut = new FileOutputStream(file);
+            workbook.write(fileOut);
+            fileOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

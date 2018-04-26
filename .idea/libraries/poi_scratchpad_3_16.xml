@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="poi-scratchpad-3.16">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-scratchpad-3.16.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-examples-3.16.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-ooxml-schemas-3.16.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-excelant-3.16.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-ooxml-3.16.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-3.16.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/lib/commons-codec-1.10.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/lib/commons-collections4-4.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/lib/junit-4.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

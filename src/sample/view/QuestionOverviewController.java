@@ -1,12 +1,10 @@
 package sample.view;
 
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import sample.MainApp;
 import sample.model.Question;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 public class QuestionOverviewController {
     @FXML
@@ -53,6 +51,17 @@ public class QuestionOverviewController {
         // Listen for selection changes and show the person details when changed.
         questionTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showQuestionDetails(newValue));
+        questionsNameColumn.setCellFactory(param -> {
+            TableCell<Question, String> cell = new TableCell<>();
+            Text text = new Text();
+            text.setStyle("");
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            //text.wrappingWidthProperty().bind(cell.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            text.wrappingWidthProperty().bind(questionsNameColumn.widthProperty());
+            return cell;
+        });
     }
 
     /**
@@ -77,11 +86,17 @@ public class QuestionOverviewController {
         if (question != null) {
             // Fill the labels with info from the question object.
             questionNameLabel.setText(question.getQuestionName());
+            questionNameLabel.setWrapText(true);
             questionFirstLabel.setText(question.getQuestionFirst());
+            questionFirstLabel.setWrapText(true);
             questionSecondLabel.setText(question.getQuestionSecond());
+            questionSecondLabel.setWrapText(true);
             questionThirdLabel.setText(question.getQuestionThird());
+            questionThirdLabel.setWrapText(true);
             questionFourthLabel.setText(question.getQuestionFourth());
+            questionFourthLabel.setWrapText(true);
             correctQuestionLabel.setText(Integer.toString(question.getCorrectQuestion()));
+            correctQuestionLabel.setWrapText(true);
         } else {
             // Question is null, remove all the text.
             questionNameLabel.setText("");

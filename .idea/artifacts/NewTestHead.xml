@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="NewTestHead">
+    <output-path>$PROJECT_DIR$/out/artifacts/NewTestHead</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.MainApp" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="NewTestHead.jar">
+        <element id="module-output" name="NewTestHead" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/sample/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
